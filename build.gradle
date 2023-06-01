@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'application'
+
+
+mainClassName = 'ru.soniir.WebSocketServer.Main'
+
+repositories {
+    maven {
+        url "http://git.soniir.ru/mvn"
+    }
+    maven {
+        url "http://git.soniir.ru:8080/mvn"
+    }
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation 'com.sparkjava:spark-core:2.9.4'
+    implementation 'com.sparkjava:spark-template-thymeleaf:2.7.1'
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+
+//    implementation 'org.slf4j:slf4j-api:1.7.30'
+//    implementation 'ch.qos.logback:logback-classic:1.2.3'
+//    implementation 'ch.qos.logback:logback-core:1.2.3'
+    testCompile 'junit:junit:4.12'
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1 id="head">TEST TEST</h1>
+    </body>
+    <script>
+        var ws = new WebSocket("ws://localhost:4567/websocket/echo");
+        ws.onopen = function(event){
+            var i =0;
+            console.log(event);
+            let timer = setInterval(()=>{
+                    ws.send(i++);
+                    if(i===101){
+                        clearInterval(timer);
+                    }
+                },1000);   
+        }
+        ws.onclose = function(event){
+            console.log(event);
+        }
+        ws.onmessage = function(event){
+            console.log(event);
+            document.getElementById("head").innerHTML = event.data; 
+        }
+    </script>
+</html>
