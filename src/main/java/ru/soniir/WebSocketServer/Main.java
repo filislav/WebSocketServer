@@ -20,12 +20,15 @@ public class Main {
      */
     public static void main(String[] args) {
         Spark.webSocket("/websocket/echo", EchoWebSocket.class);
+        Spark.staticFileLocation("/static");
         Spark.get("/",(request,response)->{
             return "Hello world";
         });
         Spark.get("/echo",(request,response)->{
             HashMap<String,Object> model = new HashMap();
-            return new ThymeleafTemplateEngine().render(new ModelAndView(model,"echoview"));
+            //return new ThymeleafTemplateEngine().render(new ModelAndView(model,"echoview"));
+            response.redirect("index.html"); 
+            return null;
         });
         Spark.init();
     }
